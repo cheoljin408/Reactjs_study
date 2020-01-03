@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //25 - 배열 내장함수 - splice와 slice
+
+        //example
+        //splice
+        const numbers = [10, 20, 30, 40];
+        const index = numbers.indexOf(30);
+
+        console.log(index);
+
+        //index부터 1개 지우겠다. 변수에 대입하면 지워진 배열이 만들어짐
+        const spliced = numbers.splice(index, 1);
+        console.log(spliced);
+        console.log(numbers);
+
+        //slice
+        const sliced = numbers.slice(0, 2);
+        console.log(sliced);
+        console.log(numbers);
+
+        //splice는 기존의 배열을 바꾸고, slice는 기존의 배열을 바꾸지 않는다.
+    </script>
+</body>
+</html>

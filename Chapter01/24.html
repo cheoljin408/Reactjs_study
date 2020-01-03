@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //24 - 배열 내장함수 - filter
+        // 특정 조건을 만족하는 원소들을 찾아서 그 원소들을 가지고 새로운 배열을 만든다.
+        
+        //example
+        const todos = [
+            {
+                id: 1,
+                text: '자바스크립트 입문',
+                done: true
+            },
+            {
+                id: 2,
+                text: '함수 배우기',
+                done: true
+            },
+            {
+                id: 3,
+                text: '객체와 배열 배우기',
+                done: true
+            },
+            {
+                id: 4,
+                text: '배열 내장함수 배우기',
+                done: false
+            }
+        ];
+
+        const tasksNotDone = todos.filter(todo => todo.done === false);
+        console.log(tasksNotDone);
+    </script>
+</body>
+</html>
