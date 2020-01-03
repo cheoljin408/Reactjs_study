@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //15 - 객체 - Getter와 Setter 함수
+
+        //getter 함수
+        // const numbers = {
+        //     a: 1,
+        //     b: 2,
+        //     //getter 함수를 만들 때는 함수 앞에 get을 붙인다.
+        //     get sum() {
+        //         console.log('sum 함수가 실행됩니다');
+        //         return this.a + this.b;
+        //     }
+        // }
+
+        // numbers.a = 5;
+        // console.log(numbers.a);
+        // console.log(numbers);
+
+        // console.log(numbers.sum);
+        
+        // numbers.b = 5;
+        // console.log(numbers.sum);
+
+        //getter 함수는 특정 값을 조회 하려고 할 때 사용한다.
+
+        //setter 함수
+        const dog = {
+            _name: '멍멍이',
+            set name(value) {
+                console.log('이름이 바뀝니다.');
+                this._name = value;
+            },
+            get name() {
+                console.log('_name을 조회합니다..');
+                return this._name;
+            }
+        }
+        //getter와 setter함수의 이름은 같게 만들 수 있다.
+
+        console.log(dog._name);
+        dog.name = '뭉뭉이';
+        console.log(dog._name);
+        
+        console.log(dog.name);
+
+        const numbers = {
+            _a: 1,
+            _b: 2,
+            sum: 3,
+            calculate() {
+                console.log('calculate');
+                this.sum = this._a + this._b;
+            },
+            get a() {
+                return this._a;
+            },
+            get b() {
+                return this._b;
+            },
+            set a(value) {
+                this._a = value;
+                this.calculate();
+            },
+            set b(value) {
+                this._b = value;
+                this.calculate();
+            }
+        }
+
+        console.log(numbers.sum);
+        numbers.a = 5;
+        numbers.b = 7;
+        console.log(numbers.sum);
+        //getter와 setter 함수를 잘 쓰면 조금 더 효율적인 코드를 짤 수 있다.
+    </script>
+</body>
+</html>

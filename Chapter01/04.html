@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //04
+
+        //논리 연산자
+
+        //NOT !
+        const a = true;
+        console.log(a);
+        console.log(!a);
+
+        //AND &&
+        let and = false && false;
+        console.log(and);
+        and = true && false;
+        console.log(and);
+        and = true && true;
+        console.log(and);
+
+        //OR ||
+        let or = false || false;
+        console.log(or);
+        or = true || false;
+        console.log(or);
+        or = true || true;
+        console.log(or);
+
+        //우선순위 NOT -> AND -> OR
+        const value = !(true && false || true && false || !false);
+        // !(true && false || true && false || true)
+        // !(false || false || true)
+        // !(true)
+        // false
+        console.log(value);
+    </script>
+</body>
+</html>
