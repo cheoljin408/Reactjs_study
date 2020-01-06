@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //33 - 프로토타입과 클래스 - Food Class 만들기
+
+        class Food {
+            constructor(name) {
+                this.name = name;
+                this.brands = [];
+            }
+            addBrand(brand) {
+                this.brands.push(brand);
+            }
+            print() {
+                console.log(`${this.name}을 파는 음식점들`);
+                console.log(this.brands.join(', '));
+            }
+        }
+
+        const pizza = new Food('피자');
+        pizza.addBrand('피자헛');
+        pizza.addBrand('도미노 피자');
+        
+        const chicken = new Food('치킨');
+        chicken.addBrand('굽네치킨');
+        chicken.addBrand('BBQ');
+
+        pizza.print();
+        chicken.print();
+    </script>
+</body>
+</html>

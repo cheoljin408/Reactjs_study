@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //28 - 배열 내장함수 - reduce 다른 예시
+
+        let alphabets = ['a', 'a', 'a', 'b', 'c', 'c', 'd', 'e'];
+
+        let counts = alphabets.reduce((acc, current) => {
+            if(acc[current]) {
+                acc[current] += 1;
+            }
+            else {
+                acc[current] = 1;
+            }
+
+            return acc;
+        }, {});
+
+        console.log(counts);
+    </script>
+</body>
+</html>

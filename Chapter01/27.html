@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //27 - 배열 내장함수 - reduce
+
+        let numbers = [1,2,3,4,5];
+
+        let sum = 0;
+        numbers.forEach(n => {
+            sum+=n;
+        });
+
+        console.log(sum);
+
+        //단순한 합 구하기
+        // sum = numbers.reduce((accumulator, current) => accumulator + current, 0);
+        // console.log(sum);
+
+        let avg = numbers.reduce((acc, curr, idx, arr) => {
+            if(idx === arr.length - 1) {
+                return (acc + curr) / arr.length;
+            }
+            return acc + curr;
+        }, 0);
+
+        console.log(avg);
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //30 - 프로토타입과 클래스 - 객체 생성자
+
+        function Animal(type, name, sound) {
+            this.type = type;
+            this.name = name;
+            this.sound = sound;
+            this.say = function() {
+                console.log(this.sound);
+            }
+        }
+        //위의 코드에서 조금 비효율적인 것은 dog나 cat같은 Animal 객체들이 만들어 질때마다
+        //함수의 내용이 똑같은 say함수가 계속 만들어진다는 것이다.
+
+        Animal.prototype.say2 = function() {
+            console.log(this.sound);
+        }
+
+        const dog = new Animal('개', '멍멍이', '멍멍');
+        const cat = new Animal('고양이', '야옹이', '야옹');
+
+        dog.say2();
+        cat.say2();
+
+        //객체 생성자로 무언가 만들었을 때 그것으로 만든 객체들 끼리 공유할 수 있는 값이나 함수
+        // = 프로토타입
+    </script>
+</body>
+</html>
