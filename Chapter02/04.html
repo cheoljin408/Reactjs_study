@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 04 - 함수의 기본 파라미터
+
+        function calculateCircleArea(r) {
+            //여기서 파라미터가 없을때 기본 값을 지정해주고 싶다면
+            const radius = r || 1;
+            return Math.PI * radius * radius;
+        }
+
+        //위의 방법 아니면
+        function calculateCircleArea2(r = 1) {
+            return Math.PI * r * r;
+        }
+
+        const calculateCircleArea3 = (r = 2) => {
+            return Math.PI * r * r;
+        }
+
+        const calculateCircleArea4 = (r = 2) => Math.PI * r * r;
+
+        const area = calculateCircleArea2();
+
+        console.log(area);
+
+        //여러가지 방법이 있음.
+    </script>
+</body>
+
+</html>

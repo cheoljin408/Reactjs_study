@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 02 - Truthy와 Falsy
+
+        console.log(!undefined);
+        console.log(!null);
+        console.log(!0);
+        console.log(!'');
+        console.log(!NaN);
+        console.log(!false);
+
+        console.log(!3);
+        console.log(!'hello');
+        console.log(!['array']);
+        console.log(![]);
+        console.log(!{});
+
+        const value = { a: 1 };
+
+        if (value) {
+            console.log('value가 Truthy 하네요.');
+        }
+
+        const value2 = {};
+
+        const truthy = !!value;
+
+        console.log(truthy);
+    </script>
+</body>
+
+</html>
