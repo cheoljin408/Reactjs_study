@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //02 - Promise
+
+        // function increaseAndPrint(n, callback) {
+        //     setTimeout(() => {
+        //         const increased = n+1;
+        //         console.log(increased);
+        //         if(callback) {
+        //             callback(increased);
+        //         }
+        //     }, 1000)
+        // }
+
+        // increaseAndPrint(0, n => {
+        //     increaseAndPrint(n, n => {
+        //         increaseAndPrint(n, n => {
+        //             increaseAndPrint(n, n => {
+        //                 increaseAndPrint(n, n => {
+        //                     console.log('작업 끝');
+        //                 });
+        //             });
+        //         });
+        //     });
+        // });
+
+        //^^^^^^^^^^^^^^^^^^^^ 위의 코드는 콜백 지옥!!
+        //Promise로 해결할 수 있다.
+
+        //new Promise에 resolve와 reject를 파라미터로 하는 함수를 만들어준다.
+
+        //성공하는 Promise
+        const myPromise = new Promise((resolve, reject) => {
+            //구현..
+            //Promise는 성공할 수도 있고 실패할 수도 있다.
+            //성공할 때는 resolve 호출, 실패할 때는 reject 호출! 둘다 함수임
+
+            //1초 뒤에 성공하는 Promise를 만들어보자
+            setTimeout(() => {
+                resolve('result');
+            }, 1000);
+        });
+
+        //Promise가 끝나고 어떤 작업을 하고 싶다면
+        myPromise.then(result => {
+            console.log(result);
+        });
+
+        /////////////////////////////////////////////////////////////////
+
+        //실패하는 Promise
+        const myPromise2 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                reject(new Error());
+            }), 1000;
+        });
+
+        myPromise2.then(result => {
+            console.log(result);
+        }).catch(e => {
+            console.error(e)
+        });
+
+        ///////////////////////////////////////////////////////////////////
+
+        function increaseAndPrint2(n) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    const value = n + 1;
+                    if(value === 5) {
+                        const error = new Error();
+                        error.name = 'ValueIsFiveError';
+                        reject(error);
+                        return;
+                    }
+                    console.log(value);
+                    resolve(value);
+                }, 1000)
+            });
+        }
+
+        increaseAndPrint2(0).then(increaseAndPrint2)
+        .then(increaseAndPrint2)
+        .then(increaseAndPrint2)
+        .then(increaseAndPrint2)
+        .then(increaseAndPrint2)
+        .catch(e => {
+            console.log(e);
+        });
+    </script>
+</body>
+
+</html>

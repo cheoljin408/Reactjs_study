@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //03 - async, await
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        //async를 사용하게 되면 함수의 결과물은 Promise를 반환하게 된다.
+        //그래서 return이 있을 땐 함수를 실행하고 then을 사용한다.
+        async function process() {
+            console.log('안녕하세요!');
+            await sleep(1000);
+            console.log('반갑습니다!');
+            return true;
+        }
+
+        process().then(value => {
+            console.log(value);
+        });
+        //Promise에서 에러를 발생하고 싶을 때는 throw를 사용
+        //그리고 에러를 잡아낼 때는 try catch를 사용한다.
+
+        // function sleep2(ms) {
+        //     return new Promise(resolve => setTimeout(resolve, ms));
+        // }
+
+        // async function makeError() {
+        //     await sleep(1000);
+        //     const error = new Error();
+        //     throw error;
+        // }
+
+        // async function process2() {
+        //     try {
+        //         await makeError();
+        //     } catch(e) {
+        //         console.log(e);
+        //     }
+        // }
+
+        // pocess2();
+
+    </script>
+</body>
+
+</html>
