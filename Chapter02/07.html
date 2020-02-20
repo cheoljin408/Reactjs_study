@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 07 - spread 와 rest - spread 연산자 ...
+
+        // spread 펼치다, 퍼뜨리다
+        // 기존에 만들었던 객체를 참고해서 새로운 객체를 만들고 싶다면 spread를 사용하면 편리함
+        const slime = {
+            name: '슬라임'
+        };
+
+        const cuteSlime = {
+            ...slime,
+            attribute: 'cute'
+        }
+
+        const purpleCuteSlime = {
+            ...cuteSlime,
+            color: 'purple'
+        };
+        // 위의 상황은 각자 다른 객체
+
+        // const cuteSlime = slime;
+        // cuteSlime.attribute = 'cute';
+
+        // const purpleCuteSlime = cuteSlime;
+        // purpleCuteSlime.color = 'purple';
+        // 위의 상황은 A = B = C 느낌 -> 모든 객체가 같은 객체가 된다.
+
+        const greenCuteSlime = {
+            ...purpleCuteSlime,
+            color: 'green'
+        }
+        // 필드를 덮어쓴다.
+
+        console.log(slime);
+        console.log(cuteSlime);
+        console.log(purpleCuteSlime);
+        console.log(greenCuteSlime);
+
+        const animals = ['개', '고양이', '참새'];
+        const anotherAnimals = [...animals, '비둘기'];
+
+        console.log(animals);
+        console.log(anotherAnimals);
+
+        const numbers = [1, 2, 3, 4, 5];
+
+        const spreadNumbers = [...numbers, 1000, ...numbers];
+        console.log(spreadNumbers);
+    </script>
+</body>
+
+</html>
