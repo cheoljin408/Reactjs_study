@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 12 - scope의 이해 - hoisting
+
+        myFunction();
+
+        function myFunction() {
+            console.log('hello world!');
+        }
+
+        // 순서가 바뀌어도 실행이 가능함. 하지만 헷갈리기때문에 hoisting은 피해야한다.
+
+
+        console.log(number);
+        var number = 2;
+    </script>
+</body>
+
+</html>

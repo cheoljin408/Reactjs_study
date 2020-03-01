@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 11 - scope의 이해 - scope 이해하기
+
+        // global scope
+        const value = 'hello!';
+
+        function myFunction() {
+            console.log('myFunction: ');
+            console.log(value);
+        }
+
+        function otherFunction() {
+            console.log('otherFunction: ');
+            // function scope
+            const value = 'bye!';
+            console.log(value);
+        }
+
+        myFunction();
+        otherFunction();
+
+        console.log('global scope: ');
+        console.log(value);
+    </script>
+</body>
+
+</html>
