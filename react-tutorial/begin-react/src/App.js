@@ -9,10 +9,13 @@ function App() {
     color: 'aqua',
     fontSize: 24,
     padding: '1rem'
-  };
+  }; 
   return (
     <>
-      <Hello/>
+      {/* 주석*/}
+      <Hello
+      // 주석
+      />
       <div style={style}>{name}</div>
       <div className="gray-box"></div>
     </>
