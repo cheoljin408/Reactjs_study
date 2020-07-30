@@ -1,6 +1,11 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useMemo } from 'react';
 import UserList from './UserList.js';
 import CreateUser from './CreateUser.js';
+
+function countActiveUsers(users) {
+  console.log('활성 사용자 수를 세는중...');
+  return users.filter(user => user.active).length;
+}
 
 function App() {
   const [inputs, setInputs] = useState({
@@ -8,10 +13,10 @@ function App() {
     email: '',
   });
 
-  const {username, email} = inputs;
+  const { username, email } = inputs;
 
   const onChange = (e) => {
-    const {name, value} = e.target;
+    const { name, value } = e.target;
     setInputs({
       ...inputs,
       [name]: value,
@@ -63,18 +68,22 @@ function App() {
   };
 
   const onToggle = (id) => {
-    setUsers(users.map(user => (user.id === id) ? {...user, active: !user.active} : user));
+    setUsers(users.map(user => (user.id === id) ? { ...user, active: !user.active } : user));
   };
+
+  // useMemo를 사용하면 연산을 필요할 때만 할 수 있다.(최적화에 용이)
+  const count = useMemo(() => countActiveUsers(users), [users]);
 
   return (
     <>
-      <CreateUser 
+      <CreateUser
         username={username}
         email={email}
         onChange={onChange}
         onCreate={onCreate}
       />
-      <UserList users={users} onRemove={onRemove} onToggle={onToggle}/>
+      <UserList users={users} onRemove={onRemove} onToggle={onToggle} />
+      <div>활성 사용자 수: {count}</div>
     </>
   );
 }
