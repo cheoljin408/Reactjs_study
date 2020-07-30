@@ -53,23 +53,23 @@ function App() {
       email,
     };
     //배열을 복사하는 방법은 두 가지: 스프레드함수 사용, concat 함수 사용
-    setUsers([...users, user]);
-    // setUsers(users.concat(user));
+    // setUsers([...users, user]);
+    setUsers(users => users.concat(user));
     setInputs({
       username: '',
       email: '',
     });
     console.log(nextId.current); // 4
     nextId.current += 1;
-  }, [username, email, users]);
+  }, [username, email]);
 
   const onRemove = useCallback((id) => {
-    setUsers(users.filter((user) => (user.id !== id)))
-  }, [users]);
+    setUsers(users => users.filter((user) => (user.id !== id)))
+  }, []);
 
   const onToggle = useCallback((id) => {
-    setUsers(users.map(user => (user.id === id) ? { ...user, active: !user.active } : user));
-  }, [users]);
+    setUsers(users => users.map(user => (user.id === id) ? { ...user, active: !user.active } : user));
+  }, []);
 
   // useMemo를 사용하면 연산을 필요할 때만 할 수 있다.(최적화에 용이)
   const count = useMemo(() => countActiveUsers(users), [users]);

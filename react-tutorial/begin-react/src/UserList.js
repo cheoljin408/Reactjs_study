@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 // 하나의 컴포넌트에서 여러개의 컴포넌트를 만들 수 있다.
-function User({ user, onRemove, onToggle }) {
+const User = React.memo(function User({ user, onRemove, onToggle }) {
     const {username, email, id, active} = user;
 
     // useEffect에서 함수 인자가 호출되는 시점에서는 우리의 UI가 화면에 나타난 상태 이후다.
@@ -42,9 +42,11 @@ function User({ user, onRemove, onToggle }) {
     */
 
     // deps 배열이 생략된 경우
+    /*
     useEffect(() => {
         console.log(user);
     });
+    */
     return (
         <div>
             <b style={{
@@ -59,7 +61,7 @@ function User({ user, onRemove, onToggle }) {
             <button onClick={() => onRemove(id)}>삭제</button>
         </div>
     );
-}
+});
 
 function UserList({ users, onRemove, onToggle }) {
     return (
@@ -81,4 +83,4 @@ function UserList({ users, onRemove, onToggle }) {
     );
 }
 
-export default UserList;
+export default React.memo(UserList);
