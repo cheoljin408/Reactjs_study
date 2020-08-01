@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { UserDispatch } from './App.js';
 
 // 하나의 컴포넌트에서 여러개의 컴포넌트를 만들 수 있다.
-const User = React.memo(function User({ user, onRemove, onToggle }) {
+const User = React.memo(function User({ user }) {
     const {username, email, id, active} = user;
+    
+    // useContext 사용
+    const dispatch = useContext(UserDispatch);
 
     // useEffect에서 함수 인자가 호출되는 시점에서는 우리의 UI가 화면에 나타난 상태 이후다.
     // useEffect를 사용할 때는 첫 번째 파라미터에는 함수를 등록, 두 번째 파라미터에는 deps(배열)를 등록한다.
@@ -53,17 +57,23 @@ const User = React.memo(function User({ user, onRemove, onToggle }) {
                 color: active ? "green" : "black",
                 cursor: "pointer"
                 }}
-                onClick={() => onToggle(id)}
+                onClick={() => dispatch({
+                    type: 'TOGGLE_USER',
+                    id
+                })}
             >
                 {username}
             </b>
             <span>{email}</span>
-            <button onClick={() => onRemove(id)}>삭제</button>
+            <button onClick={() => dispatch({
+                type: 'REMOVE_USER',
+                id
+            })}>삭제</button>
         </div>
     );
 });
 
-function UserList({ users, onRemove, onToggle }) {
+function UserList({ users }) {
     return (
         <div>
             {
@@ -73,8 +83,6 @@ function UserList({ users, onRemove, onToggle }) {
                         <User 
                             user={user} 
                             key={user.id} 
-                            onRemove={onRemove}
-                            onToggle={onToggle}
                         />
                     )
                 )

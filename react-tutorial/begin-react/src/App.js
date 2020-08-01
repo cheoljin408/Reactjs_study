@@ -1,4 +1,4 @@
-import React, { useRef, useReducer, useMemo, useCallback } from 'react';
+import React, { useRef, useReducer, useMemo, useCallback, createContext } from 'react';
 import UserList from './UserList.js';
 import CreateUser from './CreateUser.js';
 import useInputs from './useInputs.js';
@@ -56,6 +56,9 @@ function reducer(state, action) {
   }
 }
 
+// createContext 사용
+export const UserDispatch = createContext(null);
+
 function App() {
   // state는 현재 상태이고, dispatch는 액션을 발생시키는 함수
   // useReducer의 첫 번째 파라미터는 reducer 함수, 두 번째 파라미터는 처음상태 정의해 놓은 객체
@@ -92,38 +95,22 @@ function App() {
     reset();
   }, [username, email, reset]);
 
-  // onToggle 메소드
-  const onToggle = useCallback(id => {
-    dispatch({
-      type: 'TOGGLE_USER',
-      id
-    })
-  }, []);
-
-  // onRemove 메소드
-  const onRemove = useCallback(id => {
-    dispatch({
-      type: 'REMOVE_USER',
-      id
-    });
-  }, []);
-
   // count 메소드
   const count = useMemo(() => {
     countActiveUsers(users);
   }, [users]);
 
   return (
-    <>
+    <UserDispatch.Provider value={dispatch}>
       <CreateUser
         username={username}
         email={email}
         onChange={onChange}
         onCreate={onCreate}
       />
-      <UserList users={users} onToggle={onToggle} onRemove={onRemove} />
+      <UserList users={users} />
       <div>활성 사용자 수: {count}</div>
-    </>
+    </UserDispatch.Provider>
   );
 }
 
