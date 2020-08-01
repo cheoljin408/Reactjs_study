@@ -37,7 +37,7 @@ function reducer(state, action) {
   switch (action.type) {
     case 'CREATE_USER':
       return {
-        inputs: initialState.inputs,
+        // inputs: initialState.inputs,
         users: state.users.concat(action.user),
       };
     case 'TOGGLE_USER':
@@ -69,31 +69,35 @@ function App() {
   const { users } = state;
 
   // useInputs 사용
+  /*
   const [form, onChange, reset] = useInputs({
     username: '',
     email: ''
   });
+  */
 
   // username, email 추출
+  /*
   const {username, email} = form;
 
   const nextId = useRef(4);
+  */
 
 
 
   // onCreate 메소드
-  const onCreate = useCallback(e => {
-    dispatch({
-      type: 'CREATE_USER',
-      user: {
-        id: nextId.current,
-        username,
-        email
-      }
-    });
-    nextId.current += 1;
-    reset();
-  }, [username, email, reset]);
+  // const onCreate = useCallback(e => {
+  //   dispatch({
+  //     type: 'CREATE_USER',
+  //     user: {
+  //       id: nextId.current,
+  //       username,
+  //       email
+  //     }
+  //   });
+  //   nextId.current += 1;
+  //   reset();
+  // }, [username, email, reset]);
 
   // count 메소드
   const count = useMemo(() => {
@@ -102,12 +106,7 @@ function App() {
 
   return (
     <UserDispatch.Provider value={dispatch}>
-      <CreateUser
-        username={username}
-        email={email}
-        onChange={onChange}
-        onCreate={onCreate}
-      />
+      <CreateUser />
       <UserList users={users} />
       <div>활성 사용자 수: {count}</div>
     </UserDispatch.Provider>
