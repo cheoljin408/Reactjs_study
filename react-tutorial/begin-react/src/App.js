@@ -1,6 +1,7 @@
 import React, { useRef, useReducer, useMemo, useCallback } from 'react';
 import UserList from './UserList.js';
 import CreateUser from './CreateUser.js';
+import useInputs from './useInputs.js';
 
 function countActiveUsers(users) {
   console.log('활성 사용자 수를 세는중...');
@@ -9,10 +10,6 @@ function countActiveUsers(users) {
 
 // inputs, users 상태 정의 (reducer 사용)
 const initialState = {
-  inputs: {
-    username: '',
-    email: '',
-  },
   users: [
     {
       id: 1,
@@ -38,14 +35,6 @@ const initialState = {
 // reducer 함수 정의
 function reducer(state, action) {
   switch (action.type) {
-    case 'CHANGE_INPUT':
-      return {
-        ...state,
-        inputs: {
-          ...state.inputs,
-          [action.name]: action.value
-        }
-      };
     case 'CREATE_USER':
       return {
         inputs: initialState.inputs,
@@ -75,19 +64,19 @@ function App() {
   // 위의 코드에서 state에는 initialState의 값이 들어가면서 inputs와 users가 들어가 있다.
   // state에 있는 값들을 비구조화 할당으로 추출하고 컴포넌트에게 props로 전달한다. 
   const { users } = state;
-  const { username, email } = state.inputs;
+
+  // useInputs 사용
+  const [form, onChange, reset] = useInputs({
+    username: '',
+    email: ''
+  });
+
+  // username, email 추출
+  const {username, email} = form;
 
   const nextId = useRef(4);
 
-  // onChange 메소드
-  const onChange = useCallback(e => {
-    const { name, value } = e.target;
-    dispatch({
-      type: 'CHANGE_INPUT',
-      name,
-      value
-    });
-  }, []);
+
 
   // onCreate 메소드
   const onCreate = useCallback(e => {
@@ -100,7 +89,8 @@ function App() {
       }
     });
     nextId.current += 1;
-  }, [username, email]);
+    reset();
+  }, [username, email, reset]);
 
   // onToggle 메소드
   const onToggle = useCallback(id => {
