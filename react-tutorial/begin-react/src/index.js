@@ -3,12 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Hello from './Hello.js';
+import Counter from './Counter.js';
 import * as serviceWorker from './serviceWorker';
 import ContextSample from './contextSample.js';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Hello name="react" isSpecial/>,
+    <Counter />,
   </React.StrictMode>,
   document.getElementById('root')
 );
