@@ -12,8 +12,14 @@ $pink: #f06595;
         background: darken($color, 10%);
     }
 
-    & + & {
-        margin-left: 1rem;
+    &.outline {
+        color: $color;
+        background: none;
+        border: 1px solid $color;
+        &:hover {
+            color: white;
+            background: $color;
+        }
     }
 }
 
@@ -54,5 +60,19 @@ $pink: #f06595;
 
     &.pink {
         @include button-color($pink);
+    }
+
+    & + & {
+        margin-left: 1rem;
+    }
+
+    &.fullWidth {
+        width: 100%;
+        justify-content: center;
+
+        & + & {
+            margin-top: 1rem;
+            margin-left: 0;
+        }
     }
 }
