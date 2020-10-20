@@ -1,4 +1,4 @@
-import React, { useRedecer } from 'react';
+import React, { useReducer } from 'react';
 
 const initialTodos = [
     {
@@ -13,7 +13,7 @@ const initialTodos = [
     },
     {
         id: 3,
-        text: 'Context 만들기',
+        text: 'context 만들기',
         done: false,
     },
     {
@@ -38,7 +38,9 @@ function todoReducer(state, action) {
     }
 }
 
-export function TodoProvider({ children }) {
+function TodoProvider({ children }) {
     const [state, dispatch] = useReducer(todoReducer, initialTodos);
     return children;
 }
+
+export default TodoProvider;
