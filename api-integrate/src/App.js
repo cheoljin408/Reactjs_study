@@ -1,5 +1,5 @@
 import React from 'react';
-import Users from './Users';
+import Users from './Users-useReducer';
 
 function App() {
     return <Users />;
